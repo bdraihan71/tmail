@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     //mail
@@ -26,6 +26,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/mail/{id}', 'MailController@destroy')->name('mail.destroy');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
